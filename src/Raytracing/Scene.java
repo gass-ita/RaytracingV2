@@ -64,10 +64,7 @@ public class Scene {
                     image.setRGB(x, height - y - 1, 0xffffff);
                 } else {
                     image.setRGB(x, height - y - 1, 0x000000);
-                }
-
-
-                
+                }                
             }
         }
  

@@ -45,5 +45,10 @@ public class Vector3 {
         return new Vector3(x / len, y / len, z / len);
     }
 
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ", " + z + ")";
+    }
+
     
 }

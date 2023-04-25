@@ -34,7 +34,9 @@ public class App {
         Scene scene = new Scene(new Camera(cameraPosition));
         scene.addPolygon(triangle);
 
-        scene.render(width, height);
+        scene.render(width, height); 
+
+        
         
         
 

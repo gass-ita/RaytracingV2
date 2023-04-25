@@ -37,6 +37,15 @@ public class Polygon {
         }
     }
 
+    Vector3 getIntersectionPoint(Ray r){
+        double t = intersect(r);
+        if(t >= 0){
+            return r.pointAt(t);
+        } else {
+            return null;
+        }
+    }
+
 
 
 
@@ -51,13 +60,17 @@ public class Polygon {
 
 
     
-    public Vector3 getNormal(Vector3 point) {
-        if (isPointInside(point)) {
+    public Vector3 getNormal(Ray ray) {
+        Vector3 intersectionPoint = getIntersectionPoint(ray);
+        Vector3 normal = getNormal();
+    
+        if (normal.dot(ray.direction) < 0) {
+            // the normal is facing towards the ray
             return normal;
         } else {
-            return null;
+            // the normal is facing away from the ray
+            return normal.multiply(-1);
         }
-        
     }
 
     
