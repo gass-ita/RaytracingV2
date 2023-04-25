@@ -21,6 +21,10 @@ public class Vector3 {
         return new Vector3(x * scalar, y * scalar, z * scalar);
     }
 
+    public Vector3 divide(double scalar) {
+        return new Vector3(x / scalar, y / scalar, z / scalar);
+    }
+
     public double dot(Vector3 v) {
         return x * v.x + y * v.y + z * v.z;
     }
@@ -40,4 +44,6 @@ public class Vector3 {
         double len = length();
         return new Vector3(x / len, y / len, z / len);
     }
+
+    
 }

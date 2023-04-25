@@ -30,6 +30,42 @@ public class Polygon {
         Vector3 intersection = ray.pointAt(t);
 
         //*now we need to check if the intersection point is inside the triangle
+        if(isPointInside(intersection)) {
+            return t;
+        } else {
+            return -1;
+        }
+    }
+
+
+
+
+
+    
+
+    private Vector3 getNormal() {
+        Vector3 v1 = vertices[1].subtract(vertices[0]);
+        Vector3 v2 = vertices[2].subtract(vertices[0]);
+        return v1.cross(v2).normalize();
+    }
+
+
+    
+    public Vector3 getNormal(Vector3 point) {
+        if (isPointInside(point)) {
+            return normal;
+        } else {
+            return null;
+        }
+        
+    }
+
+    
+    boolean isPointInside(Vector3 point) {
+        //TODO: check if the point is inside the polygon
+        //to do that we have to use the barycentric coordinates
+
+        //*now we need to check if the intersection point is inside the triangle
         //to do that we need to find the barycentric coordinates of the intersection point
         //and check if they are all positive and their sum is less than or equal to 1
 
@@ -55,7 +91,7 @@ public class Polygon {
 
         Vector3 v1 = vertices[1].subtract(vertices[0]);
         Vector3 v2 = vertices[2].subtract(vertices[0]);
-        Vector3 v3 = intersection.subtract(vertices[0]);
+        Vector3 v3 = point.subtract(vertices[0]);
 
         double dot11 = v1.dot(v1);
         double dot12 = v1.dot(v2);
@@ -71,23 +107,7 @@ public class Polygon {
         //double w = 1 - u - v;
         //and so if u + v + w = 1 then u + v <= 1
 
-        if (u >= 0 && v >= 0 && u + v <= 1) {
-            return t;
-        } else {
-            return -1;
-        }
-    }
-
-
-
-
-
-    
-
-    private Vector3 getNormal() {
-        Vector3 v1 = vertices[1].subtract(vertices[0]);
-        Vector3 v2 = vertices[2].subtract(vertices[0]);
-        return v1.cross(v2).normalize();
+        return (u >= 0 && v >= 0 && u + v <= 1);
     }
 
 }
